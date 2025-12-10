@@ -9,7 +9,7 @@ void PlayerShip::LoadContent(ResourceManager& resourceManager)
 
 	m_pTexture = resourceManager.Load<Texture>("Textures\\PlayerShip.png");
 
-	AudioSample* pAudio = resourceManager.Load<AudioSample>("Audio\\Effects\\Laser.wav");
+	AudioSample* pAudio = resourceManager.Load<AudioSample>("Audio\\Effects\\Link.mp3");
 	pAudio->SetVolume(0.5f);
 	GetWeapon("Main Blaster")->SetFireSound(pAudio);
 

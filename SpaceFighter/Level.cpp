@@ -92,7 +92,7 @@ void Level::LoadContent(ResourceManager& resourceManager)
 	// Setup explosions if they haven't been already
 	Explosion* pExplosion;
 	if (s_explosions.size() == 0) {
-		AudioSample* pExplosionSound = resourceManager.Load<AudioSample>("Audio\\Effects\\Explosion.ogg");
+		AudioSample* pExplosionSound = resourceManager.Load<AudioSample>("Audio\\Effects\\Link2.mp3");
 		Animation* pAnimation = resourceManager.Load<Animation>("Animations\\Explosion.anim");
 		pAnimation->Stop();
 

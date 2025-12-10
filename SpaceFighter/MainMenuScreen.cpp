@@ -23,8 +23,8 @@ void MainMenuScreen::LoadContent(ResourceManager& resourceManager)
 	// Create the menu items
 	const int COUNT = 2;
 	MenuItem *pItem;
-	Font::SetLoadSize(20, true);
-	Font *pFont = resourceManager.Load<Font>("Fonts\\arial.ttf");
+	Font::SetLoadSize(50, true);
+	Font *pFont = resourceManager.Load<Font>("Fonts\\Awakenning.ttf");
 
 	SetDisplayCount(COUNT);
 
@@ -36,7 +36,7 @@ void MainMenuScreen::LoadContent(ResourceManager& resourceManager)
 		pItem = new MenuItem(text[i]);
 		pItem->SetPosition(Vector2(100, 100 + 50 * i));
 		pItem->SetFont(pFont);
-		pItem->SetColor(Color::BLUE);
+		pItem->SetColor(Color::HOTPINK);
 		pItem->SetSelected(i == 0);
 		AddMenuItem(pItem);
 	}
@@ -62,7 +62,7 @@ void MainMenuScreen::Update(const GameTime& gameTime)
 	{
 		pItem->SetAlpha(alpha);
 		isSelected = pItem->IsSelected();
-		pItem->SetColor(isSelected ? Color::WHITE : Color::BLUE);
+		pItem->SetColor(isSelected ? Color::VIOLET : Color::DARKORANGE);
 		pItem->SetTextOffset(isSelected ? Vector2::UNIT_X * offset : Vector2::ZERO);
 	}
 
