@@ -29,12 +29,12 @@ void MainMenuScreen::LoadContent(ResourceManager& resourceManager)
 	SetDisplayCount(COUNT);
 
 	enum Items { START_GAME, QUIT };
-	std::string text[COUNT] = { "Start Game", "Quit" };
+	std::string text[COUNT] = { "Start Game", "Quit"};
 
 	for (int i = 0; i < COUNT; i++)
 	{
 		pItem = new MenuItem(text[i]);
-		pItem->SetPosition(Vector2(100, 100 + 50 * i));
+		pItem->SetPosition(Vector2(100, 100 + 50 * i)); //100, 100 + 50 * i
 		pItem->SetFont(pFont);
 		pItem->SetColor(Color::HOTPINK);
 		pItem->SetSelected(i == 0);

@@ -28,7 +28,7 @@ void SpaceFighter::LoadContent(ResourceManager& resourceManager)
 {
 	// Load static resources
 	// Note: Every level will have these resources, so let's just load them once.
-	Projectile::SetTexture(resourceManager.Load<Texture>("Textures\\Bullet.png"));
+	Projectile::SetTexture(resourceManager.Load<Texture>("Textures\\laser2-1.png"));
 
 	GetScreenManager()->AddScreen(new MainMenuScreen());
 
@@ -41,4 +41,5 @@ void SpaceFighter::Draw(SpriteBatch& spriteBatch)
 	Game::Draw(spriteBatch);
 
 	DisplayFrameRate();
+	DisplayShipsHit();
 }

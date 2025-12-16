@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
      ██╗  ██╗  █████╗  ████████╗  █████╗  ███╗   ██╗  █████╗ 
 	 ██║ ██╔╝ ██╔══██╗ ╚══██╔══╝ ██╔══██╗ ████╗  ██║ ██╔══██╗
 	 █████╔╝  ███████║    ██║    ███████║ ██╔██╗ ██║ ███████║
@@ -20,6 +19,9 @@ namespace KatanaEngine
 	int Game::s_screenHeight = 600;
 
 	std::string Game::s_contentDirectory = "..\\Content\\";
+
+	static int shipsHit;
+
 	std::string Game::s_windowTitle = "Game";
 
 
@@ -237,6 +239,37 @@ namespace KatanaEngine
 		else
 		{
 			std::cout << "FPS: " << m_actualFramesPerSec << std::endl;
+		}
+	}
+
+	void Game::DisplayShipsHit()
+	{
+		m_currentTime = al_get_time();
+
+		if (m_currentTime - m_previousTime >= 1.0)
+		{
+			m_actualFramesPerSec = m_frameCounter / (m_currentTime - m_previousTime);
+			m_frameCounter = 0;
+			m_previousTime = m_currentTime;
+		}
+
+		if (m_pFrameCounterFont)
+		{
+			Color color(1, 0, 0);
+
+			float percent = (float)(m_actualFramesPerSec * m_inverseTargetFrames);
+
+			char buffer[16];
+			sprintf_s(buffer, "Ships Hit: ");
+			std::string text = buffer;
+
+			m_pSpriteBatch->Begin();
+			m_pSpriteBatch->DrawString(m_pFrameCounterFont, &text, Vector2(10, 50), color);
+			m_pSpriteBatch->End();
+		}
+		else
+		{
+			std::cout << "Ships Hit: " << m_actualFramesPerSec << std::endl;
 		}
 	}
 
