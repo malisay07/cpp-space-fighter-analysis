@@ -1,10 +1,11 @@
-
+﻿
 #pragma once
 
 #include "KatanaEngine.h"
 #include "PlayerShip.h"
 #include "CollisionManager.h"
 #include "Explosion.h"
+#include "EnemyShip.h"
 
 using namespace KatanaEngine;
 
@@ -25,6 +26,7 @@ public:
 		used for loading and managing game assets (resources). */
 	virtual void LoadContent(ResourceManager& resourceManager);
 
+
 	/** @brief Unload the content for the level. */
 	virtual void UnloadContent() { };
 
@@ -43,7 +45,7 @@ public:
 	/** @brief Add a game object to the level.
 		This object will be updated, rendered, and checked for collisions.
 		@param pGameObject A pointer to the game object to add. */
-	virtual void AddGameObject(GameObject* pGameObject) { m_gameObjects.push_back(pGameObject); }
+	virtual void AddGameObject(GameObject* pGameObject);
 
 	/** @brief Update the position of a game object within the level,
 		based on its collision sector (only objects within the same or adjacent sectors will be checked for collisions).
@@ -57,6 +59,7 @@ public:
 	/** @brief Spawn an explosion at a specific position.
 		@param position The position to spawn the explosion at. */
 	virtual void SpawnExplosion(GameObject* pExplodingObject);
+
 
 	/** @brief Set the background texture for the level.
 		@param pBackground A pointer to the texture to use as the background. */
@@ -108,6 +111,9 @@ public:
 
 		return pClosest;
 	}
+
+	virtual void OnEnemyDestroyed();
+
 
 
 protected:
@@ -163,5 +169,7 @@ private:
 	virtual unsigned int GetTotalSectorCount() const { return m_totalSectorCount; }
 
 	virtual std::vector<GameObject*>* GetSectors() { return m_pSectors; }
+
+	int m_aliveEnemies = 0;
 
 };

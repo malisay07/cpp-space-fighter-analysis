@@ -110,7 +110,7 @@ namespace KatanaEngine
 		/** @brief Displays the game's current frame rate. */
 		virtual void DisplayFrameRate();
 
-		virtual void DisplayShipsHit();
+		//virtual void DisplayShipsHit();
 
 
 		/** @brief Sets the game to display in fullscreen mode. */
@@ -153,7 +153,7 @@ namespace KatanaEngine
 
 		Font *m_pFrameCounterFont = nullptr;
 		
-		Font* m_pShipsHitFont = nullptr;
+		//Font* m_pShipsHitFont = nullptr;
 
 
 		bool IsRunning() const { return m_isRunning; }

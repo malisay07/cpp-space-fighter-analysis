@@ -6,6 +6,8 @@
 
 void Level02::LoadContent(ResourceManager& resourceManager)
 {
+	Level::LoadContent(resourceManager);
+
 	// Setup enemy ships
 	Texture* pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyShip.png");
 
@@ -30,12 +32,12 @@ void Level02::LoadContent(ResourceManager& resourceManager)
 	};
 
 	float delay = 3.0; // start delay
-	Vector2 position;
+	//Vector2 position;
 
 	for (int i = 0; i < COUNT; i++)
 	{
-		delay += delays[i];
-		position.Set(xPositions[i] * Game::GetScreenWidth(), -pTexture->GetCenter().Y);
+		delay += (float)delays[i];
+		Vector2 position(xPositions[i] * Game::GetScreenWidth(), -pTexture->GetCenter().Y);
 
 		BioEnemyShip* pEnemy = new BioEnemyShip();
 		pEnemy->SetTexture(pTexture);

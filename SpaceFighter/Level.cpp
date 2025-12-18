@@ -1,8 +1,9 @@
-
+﻿
 #include "Level.h"
 #include "EnemyShip.h"
 #include "Blaster.h"
 #include "GameplayScreen.h"
+#include "BioEnemyShip.h"
 
 std::vector<Explosion *> Level::s_explosions;
 
@@ -11,21 +12,42 @@ std::vector<Explosion *> Level::s_explosions;
 /** brief Callback function for when the player shoots an enemy. */
 void PlayerShootsEnemy(GameObject *pObject1, GameObject *pObject2)
 {
-	bool m = pObject1->HasMask(CollisionType::Enemy);
-	EnemyShip *pEnemyShip = (EnemyShip *)((m) ? pObject1 : pObject2);
-	Projectile *pPlayerProjectile = (Projectile *)((!m) ? pObject1 : pObject2);
-	pEnemyShip->Hit(pPlayerProjectile->GetDamage());
-	pPlayerProjectile->Deactivate();
+
+	EnemyShip* enemy =
+		dynamic_cast<EnemyShip*>(
+			pObject1->HasMask(CollisionType::Enemy) ? pObject1 : pObject2
+			);
+
+	Projectile* projectile =
+		dynamic_cast<Projectile*>(
+			pObject1->HasMask(CollisionType::Projectile) ? pObject1 : pObject2
+			);
+
+	if (!enemy || !projectile) return;
+
+	enemy->Hit(projectile->GetDamage());
+	projectile->Deactivate();
 }
 
 /** brief Callback function for when the player collides with an enemy. */
 void PlayerCollidesWithEnemy(GameObject *pObject1, GameObject *pObject2)
 {
-	bool m = pObject1->HasMask(CollisionType::Player);
-	PlayerShip *pPlayerShip = (PlayerShip *)((m) ? pObject1 : pObject2);
-	EnemyShip *pEnemyShip = (EnemyShip *)((!m) ? pObject1 : pObject2);
-	pPlayerShip->Hit(std::numeric_limits<float>::max());
-	pEnemyShip->Hit(std::numeric_limits<float>::max());
+
+	PlayerShip* player =
+		dynamic_cast<PlayerShip*>(
+			pObject1->HasMask(CollisionType::Player) ? pObject1 : pObject2
+			);
+
+	EnemyShip* enemy =
+		dynamic_cast<EnemyShip*>(
+			pObject1->HasMask(CollisionType::Enemy) ? pObject1 : pObject2
+			);
+
+	if (!player || !enemy)
+		return;
+
+	player->Hit(std::numeric_limits<float>::max());
+	enemy->Hit(std::numeric_limits<float>::max());
 }
 
 
@@ -87,6 +109,7 @@ Level::~Level()
 
 void Level::LoadContent(ResourceManager& resourceManager)
 {
+
 	m_pPlayerShip->LoadContent(resourceManager);
 
 	// Setup explosions if they haven't been already
@@ -255,3 +278,51 @@ void Level::Draw(SpriteBatch& spriteBatch)
 	for (Explosion* pExplosion : s_explosions) pExplosion->Draw(spriteBatch);
 	spriteBatch.End();
 }
+
+void Level::AddGameObject(GameObject* pGameObject)
+{
+	m_gameObjects.push_back(pGameObject);
+
+	if (auto* enemy = dynamic_cast<EnemyShip*>(pGameObject))
+	{
+		m_aliveEnemies++;
+		std::cout << "[ADD] Enemy " << enemy->GetIndex()
+			<< " | Alive: " << m_aliveEnemies << std::endl;
+
+		enemy->SetLevel(this); 
+	}
+	else if (auto* bio = dynamic_cast<BioEnemyShip*>(pGameObject))
+	{
+		m_aliveEnemies++;
+		std::cout << "[ADD] BioEnemy " << bio->GetIndex()
+			<< " | Alive: " << m_aliveEnemies << std::endl;
+
+		bio->SetLevel(this); 
+	}
+}
+
+void Level::OnEnemyDestroyed()
+{
+
+	if (m_aliveEnemies <= 0)
+	{
+		std::cout << "ERROR: OnEnemyDestroyed called with 0 enemies!\n";
+		return; 
+	}
+
+	m_aliveEnemies--;
+	std::cout << "Enemy destroyed, remaining: " << m_aliveEnemies << std::endl;
+
+	if (m_aliveEnemies == 0)
+	{
+		std::cout << "All enemies destroyed! Advancing...\n";
+		GetGameplayScreen()->AdvanceToNextLevel();
+	}
+}
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-
+﻿
 #pragma once
 
 #include "Ship.h"
@@ -42,6 +42,8 @@ public:
 		@return Returns the collision type of the enemy ship. */
 	virtual CollisionType GetCollisionType() const { return CollisionType::Enemy | CollisionType::Ship; }
 
+	virtual void SetLevel(Level* level) { m_pLevel = level; }
+
 
 protected:
 
@@ -50,6 +52,7 @@ protected:
 		@return Returns the delay before the enemy ship activates. */
 	virtual double GetDelaySeconds() const { return m_delaySeconds; }
 
+	float m_health = 1.0f;
 
 private:
 
@@ -57,5 +60,8 @@ private:
 
 	double m_activationSeconds = 0;
 
+	Level* m_pLevel = nullptr;  
+
+	bool m_reportedDead = false;
 
 };

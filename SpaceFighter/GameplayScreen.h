@@ -21,6 +21,7 @@ public:
 	GameplayScreen(const int levelIndex = 0);
 	virtual ~GameplayScreen() { }
 
+
 	/** @brief Load the content for the screen.
 		@param resourceManager A reference to the game's resource manager. */
 	virtual void LoadContent(ResourceManager& resourceManager);
@@ -41,6 +42,7 @@ public:
 		@param levelIndex The index of the level to load. */
 	virtual void LoadLevel(const int levelIndex);
 
+	virtual void AdvanceToNextLevel();
 
 private:
 
@@ -49,5 +51,7 @@ private:
 	Level *m_pLevel = nullptr;
 
 	ResourceManager *m_pResourceManager = nullptr;
+
+	bool m_isAdvancing = false;
 
 };

@@ -242,7 +242,7 @@ namespace KatanaEngine
 		}
 	}
 
-	void Game::DisplayShipsHit()
+	/*void Game::DisplayShipsHit()
 	{
 		m_currentTime = al_get_time();
 
@@ -271,7 +271,7 @@ namespace KatanaEngine
 		{
 			std::cout << "Ships Hit: " << m_actualFramesPerSec << std::endl;
 		}
-	}
+	}*/
 
 	void Game::SetTargetFramesPerSecond(int const frames)
 	{

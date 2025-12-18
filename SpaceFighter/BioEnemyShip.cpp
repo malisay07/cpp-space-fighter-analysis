@@ -20,7 +20,7 @@ void BioEnemyShip::Update(const GameTime& gameTime)
 		TranslatePosition(x, GetSpeed() * gameTime.GetElapsedTime());
 
 		if (!IsOnScreen()) Deactivate();
-		
+
 	}
 
 	EnemyShip::Update(gameTime);

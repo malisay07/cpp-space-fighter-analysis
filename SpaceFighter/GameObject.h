@@ -1,4 +1,4 @@
-
+﻿
 #pragma once
 
 #include "KatanaEngine.h"
@@ -24,6 +24,7 @@ public:
 		@param pLevel A pointer to the current level.
 		@remark This is called automatically by the level class when a game object is added to it. */
 	static void SetCurrentLevel(Level *pLevel) { s_pCurrentLevel = pLevel; }
+
 
 	/** @brief Get the current level.
 		@return A pointer to the current level. */
