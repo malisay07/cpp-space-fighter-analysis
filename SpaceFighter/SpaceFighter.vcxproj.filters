@@ -104,6 +104,9 @@
     <ClCompile Include="Level03.cpp">
       <Filter>Source Files\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="BioEnemyBoss.cpp">
+      <Filter>Source Files\Game Objects\Ships</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuScreen.h">
@@ -162,6 +165,9 @@
     </ClInclude>
     <ClInclude Include="Level03.h">
       <Filter>Source Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="BioEnemyBoss.h">
+      <Filter>Source Files\Game Objects\Ships</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

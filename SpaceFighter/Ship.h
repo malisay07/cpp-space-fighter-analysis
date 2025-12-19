@@ -60,7 +60,11 @@ public:
 
 	/** @brief Sets the max hit points of the ship.
 		@param hitPoints The max hit points of the ship. */
-	virtual void SetMaxHitPoints(const float hitPoints) { m_maxHitPoints = hitPoints; }
+	virtual void SetMaxHitPoints(const float hitPoints)
+	{ 
+		m_maxHitPoints = hitPoints;
+		m_hitPoints = hitPoints;
+	}
 
 
 	virtual IAttachment* GetAttachment(const std::string& key);
@@ -93,6 +97,9 @@ protected:
 	/** @brief Gets the max hit points of the ship.
 		@return Returns the max hit points of the ship. */
 	virtual float GetMaxHitPoints() const { return m_maxHitPoints; }
+
+	//Resets hitpoints to max
+	void ResetHitpoints() { m_hitPoints = m_maxHitPoints; }
 
 
 private:

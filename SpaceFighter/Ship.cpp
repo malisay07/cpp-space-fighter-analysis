@@ -55,7 +55,10 @@ IAttachment* Ship::GetAttachment(const int index)
 
 void Ship::Initialize()
 {
-	m_hitPoints = m_maxHitPoints;
+	//Added to reset hitpoints on initialization
+	ResetHitpoints();
+
+	//m_hitPoints = m_maxHitPoints;
 }
 
 void Ship::FireWeapons(TriggerType triggerType)

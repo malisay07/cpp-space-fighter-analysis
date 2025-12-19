@@ -1,5 +1,5 @@
 ﻿
-
+#include "BioEnemyBoss.h"
 #include "Level01.h"
 #include "BioEnemyShip.h"
 
@@ -11,6 +11,9 @@ void Level01::LoadContent(ResourceManager& resourceManager)
 
 	// Setup enemy ships
 	Texture *pTexture = resourceManager.Load<Texture>("Textures\\BioEnemyShip.png");
+
+	Texture* pBossTexture = resourceManager.Load<Texture>("Textures\\BioEnemyBoss.png");
+
 
 	const int COUNT = 21;
 
@@ -46,6 +49,7 @@ void Level01::LoadContent(ResourceManager& resourceManager)
 		pEnemy->Initialize(position, (float)delay);
 		AddGameObject(pEnemy);
 	}
+
 
 	// Setup background
 	SetBackground(resourceManager.Load<Texture>("Textures\\SpaceBackground01.png"));

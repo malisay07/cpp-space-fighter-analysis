@@ -50,7 +50,7 @@ void EnemyShip::Initialize(const Vector2 position, const double delaySeconds)
 
 	Ship::Initialize();
 
-	
+	//m_hitPoints = GetMaxHitPoints();
 }
 
 
@@ -62,9 +62,10 @@ void EnemyShip::Hit(const float damage)
 	if (!IsActive() || m_reportedDead)
 		return;
 
-	m_health -= damage;
+	Ship::Hit(damage);
 
-	if (m_health <= 0)
+
+	if (GetHitPoints() <= 0 && !m_reportedDead)
 	{
 		Deactivate();
 

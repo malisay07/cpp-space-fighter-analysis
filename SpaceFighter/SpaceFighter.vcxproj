@@ -170,6 +170,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BioEnemyBoss.cpp" />
     <ClCompile Include="BioEnemyShip.cpp" />
     <ClCompile Include="Blaster.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -197,6 +198,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BioEnemyBoss.h" />
     <ClInclude Include="BioEnemyShip.h" />
     <ClInclude Include="Blaster.h" />
     <ClInclude Include="CollisionManager.h" />
